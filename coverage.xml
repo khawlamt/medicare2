@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1780354602">
-  <project timestamp="1780354602" name="Clover Coverage">
+<coverage generated="1780355127">
+  <project timestamp="1780355127" name="Clover Coverage">
     <package name="App\Http\Controllers\Auth">
       <file name="C:\projetlaravel\medicare2\app\Http\Controllers\Auth\AuthenticatedSessionController.php">
         <class name="App\Http\Controllers\Auth\AuthenticatedSessionController" namespace="App\Http\Controllers\Auth">

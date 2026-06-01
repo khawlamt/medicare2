@@ -34,6 +34,7 @@ class Hospital extends Model
     ];
 
     // ── Scopes ─────────────────────────────────────────
+
     public function scopeSearch($query, string $term)
     {
         return $query->where('nom', 'like', "%$term%")
@@ -62,12 +63,23 @@ class Hospital extends Model
     }
 
     // ── Helpers ────────────────────────────────────────
+
     public function getServicesAttribute(): string
     {
         $services = [];
-        if ($this->urgence) $services[] = 'Urgence';
-        if ($this->maternite) $services[] = 'Maternité';
-        if ($this->chirurgie) $services[] = 'Chirurgie';
+
+        if ($this->urgence) {
+            $services[] = 'Urgence';
+        }
+
+        if ($this->maternite) {
+            $services[] = 'Maternité';
+        }
+
+        if ($this->chirurgie) {
+            $services[] = 'Chirurgie';
+        }
+
         return count($services) ? implode(', ', $services) : 'Consultation générale';
     }
 }
