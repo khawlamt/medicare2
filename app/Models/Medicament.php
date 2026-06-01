@@ -17,6 +17,7 @@ class Medicament extends Model
     ];
 
     // ── Scopes ─────────────────────────────────────────
+
     public function scopeFaibleStock($query)
     {
         return $query->whereColumn('stock', '<=', 'seuil_alerte');
@@ -28,17 +29,30 @@ class Medicament extends Model
     }
 
     // ── Helpers ────────────────────────────────────────
+
     public function getStockStatusAttribute(): string
     {
-        if ($this->stock === 0) return 'Rupture de stock';
-        if ($this->stock <= $this->seuil_alerte) return 'Stock faible';
+        if ($this->stock === 0) {
+            return 'Rupture de stock';
+        }
+
+        if ($this->stock <= $this->seuil_alerte) {
+            return 'Stock faible';
+        }
+
         return 'Disponible';
     }
 
     public function getStockBadgeAttribute(): string
     {
-        if ($this->stock === 0) return 'danger';
-        if ($this->stock <= $this->seuil_alerte) return 'warning';
+        if ($this->stock === 0) {
+            return 'danger';
+        }
+
+        if ($this->stock <= $this->seuil_alerte) {
+            return 'warning';
+        }
+
         return 'success';
     }
 }
