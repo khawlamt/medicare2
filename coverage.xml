@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1780355282">
-  <project timestamp="1780355282" name="Clover Coverage">
+<coverage generated="1780355451">
+  <project timestamp="1780355451" name="Clover Coverage">
     <package name="App\Http\Controllers\Auth">
       <file name="C:\projetlaravel\medicare2\app\Http\Controllers\Auth\AuthenticatedSessionController.php">
         <class name="App\Http\Controllers\Auth\AuthenticatedSessionController" namespace="App\Http\Controllers\Auth">
@@ -675,21 +675,25 @@
       </file>
       <file name="C:\projetlaravel\medicare2\app\Models\Medicament.php">
         <class name="App\Models\Medicament" namespace="App\Models">
-          <metrics complexity="8" methods="4" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="8" coveredstatements="0" elements="12" coveredelements="0"/>
+          <metrics complexity="8" methods="4" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="12" coveredstatements="0" elements="16" coveredelements="0"/>
         </class>
-        <line num="20" type="method" name="scopeFaibleStock" visibility="public" complexity="1" crap="2" count="0"/>
-        <line num="22" type="stmt" count="0"/>
-        <line num="25" type="method" name="scopeSearch" visibility="public" complexity="1" crap="2" count="0"/>
-        <line num="27" type="stmt" count="0"/>
-        <line num="31" type="method" name="getStockStatusAttribute" visibility="public" complexity="3" crap="12" count="0"/>
-        <line num="33" type="stmt" count="0"/>
-        <line num="34" type="stmt" count="0"/>
+        <line num="21" type="method" name="scopeFaibleStock" visibility="public" complexity="1" crap="2" count="0"/>
+        <line num="23" type="stmt" count="0"/>
+        <line num="26" type="method" name="scopeSearch" visibility="public" complexity="1" crap="2" count="0"/>
+        <line num="28" type="stmt" count="0"/>
+        <line num="33" type="method" name="getStockStatusAttribute" visibility="public" complexity="3" crap="12" count="0"/>
         <line num="35" type="stmt" count="0"/>
-        <line num="38" type="method" name="getStockBadgeAttribute" visibility="public" complexity="3" crap="12" count="0"/>
+        <line num="36" type="stmt" count="0"/>
+        <line num="39" type="stmt" count="0"/>
         <line num="40" type="stmt" count="0"/>
-        <line num="41" type="stmt" count="0"/>
-        <line num="42" type="stmt" count="0"/>
-        <metrics loc="45" ncloc="43" classes="1" methods="4" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="8" coveredstatements="0" elements="12" coveredelements="0"/>
+        <line num="43" type="stmt" count="0"/>
+        <line num="46" type="method" name="getStockBadgeAttribute" visibility="public" complexity="3" crap="12" count="0"/>
+        <line num="48" type="stmt" count="0"/>
+        <line num="49" type="stmt" count="0"/>
+        <line num="52" type="stmt" count="0"/>
+        <line num="53" type="stmt" count="0"/>
+        <line num="56" type="stmt" count="0"/>
+        <metrics loc="59" ncloc="57" classes="1" methods="4" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="12" coveredstatements="0" elements="16" coveredelements="0"/>
       </file>
       <file name="C:\projetlaravel\medicare2\app\Models\Patient.php">
         <class name="App\Models\Patient" namespace="App\Models">
@@ -928,6 +932,6 @@
         <metrics loc="18" ncloc="15" classes="1" methods="1" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="1" coveredstatements="1" elements="2" coveredelements="2"/>
       </file>
     </package>
-    <metrics files="36" loc="1913" ncloc="1711" classes="35" methods="112" coveredmethods="25" conditionals="0" coveredconditionals="0" statements="586" coveredstatements="128" elements="698" coveredelements="153"/>
+    <metrics files="36" loc="1927" ncloc="1725" classes="35" methods="112" coveredmethods="25" conditionals="0" coveredconditionals="0" statements="590" coveredstatements="128" elements="702" coveredelements="153"/>
   </project>
 </coverage>
