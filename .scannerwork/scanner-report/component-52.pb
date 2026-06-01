@@ -1,1 +1,0 @@
-4 2phpX)hr@database/migrations/2026_05_31_000000_create_hospitals_table.php

@@ -1,1 +1,0 @@
-+ 2phpX,hr<database/migrations/0001_01_01_000000_create_users_table.php

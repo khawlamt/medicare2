@@ -1,1 +1,0 @@
-/ 2phpX#hr?database/migrations/2026_05_30_230733_create_patients_table.php

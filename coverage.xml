@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1780356141">
-  <project timestamp="1780356141" name="Clover Coverage">
+<coverage generated="1780357912">
+  <project timestamp="1780357912" name="Clover Coverage">
     <package name="App\Http\Controllers\Auth">
       <file name="C:\projetlaravel\medicare2\app\Http\Controllers\Auth\AuthenticatedSessionController.php">
         <class name="App\Http\Controllers\Auth\AuthenticatedSessionController" namespace="App\Http\Controllers\Auth">
@@ -485,11 +485,11 @@
         <class name="App\Http\Middleware\CheckRole" namespace="App\Http\Middleware">
           <metrics complexity="3" methods="1" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="3" coveredstatements="0" elements="4" coveredelements="0"/>
         </class>
-        <line num="16" type="method" name="handle" visibility="public" complexity="3" crap="12" count="0"/>
-        <line num="18" type="stmt" count="0"/>
-        <line num="19" type="stmt" count="0"/>
+        <line num="18" type="method" name="handle" visibility="public" complexity="3" crap="12" count="0"/>
+        <line num="21" type="stmt" count="0"/>
         <line num="22" type="stmt" count="0"/>
-        <metrics loc="25" ncloc="20" classes="1" methods="1" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="3" coveredstatements="0" elements="4" coveredelements="0"/>
+        <line num="25" type="stmt" count="0"/>
+        <metrics loc="28" ncloc="20" classes="1" methods="1" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="3" coveredstatements="0" elements="4" coveredelements="0"/>
       </file>
     </package>
     <package name="App\Http\Requests\Auth">
@@ -932,6 +932,6 @@
         <metrics loc="18" ncloc="15" classes="1" methods="1" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="1" coveredstatements="1" elements="2" coveredelements="2"/>
       </file>
     </package>
-    <metrics files="36" loc="1927" ncloc="1725" classes="35" methods="112" coveredmethods="25" conditionals="0" coveredconditionals="0" statements="590" coveredstatements="128" elements="702" coveredelements="153"/>
+    <metrics files="36" loc="1930" ncloc="1725" classes="35" methods="112" coveredmethods="25" conditionals="0" coveredconditionals="0" statements="590" coveredstatements="128" elements="702" coveredelements="153"/>
   </project>
 </coverage>

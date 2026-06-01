@@ -1,1 +1,0 @@
-. 2phpXhrAdatabase/migrations/2026_05_30_193753_add_role_to_users_table.php
