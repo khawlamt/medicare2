@@ -1,0 +1,1 @@
+ 2phpXhr0app/Http/Controllers/Auth/PasswordController.php

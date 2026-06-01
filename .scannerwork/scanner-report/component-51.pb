@@ -1,0 +1,1 @@
+3 2phpX hrDdatabase/migrations/2026_05_30_230739_create_chat_messages_table.php

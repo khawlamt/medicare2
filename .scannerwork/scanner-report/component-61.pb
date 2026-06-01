@@ -1,0 +1,1 @@
+= (2phpX hr'tests/Feature/Auth/RegistrationTest.php

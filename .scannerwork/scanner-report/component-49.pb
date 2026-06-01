@@ -1,0 +1,1 @@
+1 2phpX!hrBdatabase/migrations/2026_05_30_230735_create_medicaments_table.php

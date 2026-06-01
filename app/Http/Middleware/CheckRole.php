@@ -11,14 +11,17 @@ class CheckRole
     /**
      * Handle an incoming request.
      *
-     * @param  Closure(Request): (Response)  $next
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \Closure  $next
+     * @param  string  $role  <-- Add this parameter
      */
-    public function handle(Request $request, Closure $next): Response
-   {
-           if (!auth()->check() || auth()->user()->role !== $role) {
-               abort(403, 'Accès non autorisé.');
-           }
+    public function handle(Request $request, Closure $next, string $role): Response
+    {
+        // Now $role is initialized and ready to use!
+        if (!auth()->check() || auth()->user()->role !== $role) {
+            abort(403, 'Accès non autorisé.');
+        }
 
-           return $next($request);
-       }
+        return $next($request);
+    }
 }

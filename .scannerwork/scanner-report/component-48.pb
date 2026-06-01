@@ -1,0 +1,1 @@
+0 2phpX!hr?database/migrations/2026_05_30_230734_create_medecins_table.php

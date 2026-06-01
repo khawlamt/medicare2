@@ -22,6 +22,7 @@ Route::middleware('auth')->group(function () {
         Route::delete('/profile', [ProfileController::class, 'destroy'])
             ->name('profile.destroy');
     // Dashboard
+
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
     // CRUD complets
