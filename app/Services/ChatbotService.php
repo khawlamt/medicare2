@@ -159,98 +159,88 @@ PROMPT;
     // ──────────────────────────────────────────────────────────────
     // Appel à l'API Google Gemini
     // ──────────────────────────────────────────────────────────────
-    private function appelerGemini(string $prompt, array $historique): string
-    {
-        $apiKey = config('services.groq.key');
-        $apiUrl = config('services.groq.url');
+  private function appelerGemini(string $prompt, array $historique): string
+  {
+      $apiKey = config('services.groq.key');
+      $apiUrl = config('services.groq.url');
 
-        $messages = [];
+      $messages = [];
 
-        // Historique conversation
-        foreach ($historique as $msg) {
+      foreach ($historique as $msg) {
 
-            $role = $msg['role'] === 'model'
-                ? 'assistant'
-                : $msg['role'];
+          $messages[] = [
+              'role' => $msg['role'] === 'model'
+                  ? 'assistant'
+                  : $msg['role'],
 
-            $messages[] = [
-                'role' => $role,
-                'content' => $msg['content'],
-            ];
-        }
+              'content' => $msg['content'],
+          ];
+      }
 
-        // Prompt actuel
-        $messages[] = [
-            'role' => 'user',
-            'content' => $prompt,
-        ];
+      $messages[] = [
+          'role' => 'user',
+          'content' => $prompt,
+      ];
 
-        try {
+      try {
 
-            $client = new Client([
-                'timeout' => 20
-            ]);
+          $client = new Client([
+              'timeout' => 20
+          ]);
 
-            $response = $client->post($apiUrl, [
+          $response = $client->post($apiUrl, [
 
-                'headers' => [
-                    'Authorization' => 'Bearer '.$apiKey,
-                    'Content-Type' => 'application/json',
-                ],
+              'headers' => [
+                  'Authorization' => 'Bearer '.$apiKey,
+                  'Content-Type' => 'application/json',
+              ],
 
-                'json' => [
+              'json' => [
+                  'model' => 'llama-3.3-70b-versatile',
+                  'messages' => $messages,
+                  'temperature' => 0.3,
+                  'max_tokens' => 800,
+              ],
+          ]);
 
-                    'model' => 'llama-3.3-70b-versatile',
+          $result = json_decode(
+              $response->getBody()->getContents(),
+              true
+          );
 
-                    'messages' => $messages,
+          return $result['choices'][0]['message']['content']
+              ?? 'Je n\'ai pas pu générer une réponse.';
 
-                    'temperature' => 0.3,
+      } catch (ConnectException $e) {
 
-                    'max_tokens' => 800,
-                ],
-            ]);
+          return '⚠️ Service IA indisponible.';
 
-            $result = json_decode(
-                $response->getBody()->getContents(),
-                true
-            );
+      } catch (RequestException $e) {
 
-            return $result['choices'][0]['message']['content']
-                ?? 'Je n\'ai pas pu générer une réponse.';
+          return $this->gererErreurRequete($e);
 
-        }
+      } catch (\Exception $e) {
 
-        catch (ConnectException $e) {
+          return '⚠️ Erreur inattendue.';
+      }
+  }
+private function gererErreurRequete(RequestException $e): string
+{
+    $code = $e->hasResponse()
+        ? $e->getResponse()->getStatusCode()
+        : '?';
 
-            return '⚠️ Service IA indisponible.';
-        }
+    return match ($code) {
 
-        catch (RequestException $e) {
+        429 => '⚠️ Limite API atteinte.',
 
-            $code = $e->hasResponse()
-                ? $e->getResponse()->getStatusCode()
-                : '?';
+        401 => '⚠️ API Key invalide.',
 
-            if ($code == 429) {
-                return '⚠️ Limite API atteinte.';
-            }
+        400 => '⚠️ Requête invalide.',
 
-            if ($code == 401) {
-                return '⚠️ API Key invalide.';
-            }
-
-            if ($code == 400) {
-                return '⚠️ Requête invalide.';
-            }
-
-            return $e->hasResponse()
-                ? $e->getResponse()->getBody()->getContents()
-                : $e->getMessage();
-        }
-
-        catch (\Exception $e) {
-
-            return '⚠️ Erreur inattendue.';
-        }
-    }
+        default => $e->hasResponse()
+            ? $e->getResponse()->getBody()->getContents()
+            : $e->getMessage(),
+    };
+}
 }
