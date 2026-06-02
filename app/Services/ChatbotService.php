@@ -159,71 +159,76 @@ PROMPT;
     // ──────────────────────────────────────────────────────────────
     // Appel à l'API Google Gemini
     // ──────────────────────────────────────────────────────────────
-  private function appelerGemini(string $prompt, array $historique): string
-  {
-      $apiKey = config('services.groq.key');
-      $apiUrl = config('services.groq.url');
+ private function appelerGemini(string $prompt, array $historique): string
+ {
+     $apiKey = config('services.groq.key');
+     $apiUrl = config('services.groq.url');
 
-      $messages = [];
+     $messages = [];
 
-      foreach ($historique as $msg) {
+     foreach ($historique as $msg) {
 
-          $messages[] = [
-              'role' => $msg['role'] === 'model'
-                  ? 'assistant'
-                  : $msg['role'],
+         $messages[] = [
+             'role' => $msg['role'] === 'model'
+                 ? 'assistant'
+                 : $msg['role'],
 
-              'content' => $msg['content'],
-          ];
-      }
+             'content' => $msg['content'],
+         ];
+     }
 
-      $messages[] = [
-          'role' => 'user',
-          'content' => $prompt,
-      ];
+     $messages[] = [
+         'role' => 'user',
+         'content' => $prompt,
+     ];
 
-      try {
+     $responseMessage = '';
 
-          $client = new Client([
-              'timeout' => 20
-          ]);
+     try {
 
-          $response = $client->post($apiUrl, [
+         $client = new Client([
+             'timeout' => 20
+         ]);
 
-              'headers' => [
-                  'Authorization' => 'Bearer '.$apiKey,
-                  'Content-Type' => 'application/json',
-              ],
+         $response = $client->post($apiUrl, [
 
-              'json' => [
-                  'model' => 'llama-3.3-70b-versatile',
-                  'messages' => $messages,
-                  'temperature' => 0.3,
-                  'max_tokens' => 800,
-              ],
-          ]);
+             'headers' => [
+                 'Authorization' => 'Bearer '.$apiKey,
+                 'Content-Type' => 'application/json',
+             ],
 
-          $result = json_decode(
-              $response->getBody()->getContents(),
-              true
-          );
+             'json' => [
+                 'model' => 'llama-3.3-70b-versatile',
+                 'messages' => $messages,
+                 'temperature' => 0.3,
+                 'max_tokens' => 800,
+             ],
+         ]);
 
-          return $result['choices'][0]['message']['content']
-              ?? 'Je n\'ai pas pu générer une réponse.';
+         $result = json_decode(
+             $response->getBody()->getContents(),
+             true
+         );
 
-      } catch (ConnectException $e) {
+         $responseMessage =
+             $result['choices'][0]['message']['content']
+             ?? 'Je n\'ai pas pu générer une réponse.';
 
-          return '⚠️ Service IA indisponible.';
+     } catch (ConnectException $e) {
 
-      } catch (RequestException $e) {
+         $responseMessage = '⚠️ Service IA indisponible.';
 
-          return $this->gererErreurRequete($e);
+     } catch (RequestException $e) {
 
-      } catch (\Exception $e) {
+         $responseMessage = $this->gererErreurRequete($e);
 
-          return '⚠️ Erreur inattendue.';
-      }
-  }
+     } catch (\Exception $e) {
+
+         $responseMessage = '⚠️ Erreur inattendue.';
+     }
+
+     return $responseMessage;
+ }
 private function gererErreurRequete(RequestException $e): string
 {
     $code = $e->hasResponse()
